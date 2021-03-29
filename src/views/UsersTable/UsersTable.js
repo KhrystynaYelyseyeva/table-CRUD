@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTable } from 'react-table';
-import Modal from '../../components/AddUserModal/AddUserModal';
+import Modal from '../../components/UserModal/UserModal';
 
 import { TableComponent as Table } from "../../components/Table/Table";
 
 import { COLUMNS } from '../../components/Table/columns';
 import { getUsers } from '../../redusers';
-import { UserForm } from "../../components/AddUserForm/AddUserForm";
+import { UserForm } from "../../components/UserForm/UserForm";
 
 
 export const UsersTable = () => {
@@ -30,9 +30,9 @@ export const UsersTable = () => {
   return (
     <>
       <Modal>
-        <UserForm/>
+        {({handleClose}) => <UserForm handleClose={handleClose}/>}
       </Modal>
-      <Table
+<Table
         getTableProps={getTableProps}
         getTableBodyProps={getTableBodyProps}
         headerGroups={headerGroups}

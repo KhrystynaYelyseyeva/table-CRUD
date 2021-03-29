@@ -185,7 +185,7 @@ export const UserForm = (props) => {
                   className={classes.button}
                   onClick={submitForm}
                 >
-                  Add to users
+                  Add to user
                 </Button>
               </Grid>
             </Grid>
