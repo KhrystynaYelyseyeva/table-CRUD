@@ -1,17 +1,18 @@
-import React, { useState, memo } from 'react';
-import Modal from '@material-ui/core/Modal';
+import { IconButton } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
+import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
-import { NfcRounded } from '@material-ui/icons';
+import EditIcon from '@material-ui/icons/Edit';
+import React, { useState } from 'react';
 
 const useStyles = makeStyles({
-  buttonSpac: {
+  button: {
     display: 'block',
     margin: '5vh auto 5vh',
   },
 });
 
-const UserModal = memo((props) => {
+const UserModal = ({ children, type }) => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
 
@@ -22,27 +23,37 @@ const UserModal = memo((props) => {
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   return (
     <div>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.buttonSpac}
-        onClick={handleOpen}
-      >
-        Add user
-      </Button>
+      {type === 'add-user' && (
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={handleOpen}
+          aria-label="add-user"
+        >
+          Add user
+        </Button>
+      )}
+      {type === 'edit-user' && (
+        <IconButton
+          aria-label="edit-user"
+          onClick={handleOpen}
+        >
+          <EditIcon fontSize="small" />
+        </IconButton>
+      )}
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="add user"
       >
-        {props.children({handleClose})}
+        {children({handleClose, type})}
         {/* {React.cloneElement(props.children, { handleClose: handleClose })} */}
       </Modal>
     </div>
   );
-})
+}
 
 export default UserModal;

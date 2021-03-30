@@ -1,3 +1,3 @@
-export const ADD = 'todos/ADD';
-export const UPDATE = 'todos/UPDATE';
-export const DELETE = 'todos/DELETE';
+export const ADD = 'users/ADD';
+export const EDIT = 'users/EDIT';
+export const DELETE = 'users/DELETE';

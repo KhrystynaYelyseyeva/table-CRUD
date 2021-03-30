@@ -1,7 +1,20 @@
+import { UserForm } from "../../components/UserForm/UserForm";
+import Modal from '../../components/UserModal/UserModal';
+import { DeleteCell } from '../DeleteCell/DeleteCell';
+
 export const COLUMNS = [
   {
-    Header: 'ID',
-    accessor: 'id',
+    Header: 'Edit user',
+    accessor: 'userID',
+      Cell: ({ cell }) => {
+        return (
+          <Modal type="edit-user">
+            {({ handleClose, type }) => (
+              <UserForm handleClose={handleClose} type={type} currentUserID={cell.value}/>
+            )}
+          </Modal>
+        )
+      }
   },
   {
     Header: 'Full Name',
@@ -23,5 +36,11 @@ export const COLUMNS = [
     Header: 'Credit card',
     accessor: 'credit_card',
   },
-  
+  {
+    Header: 'Delete user',
+    accessor: 'id',
+    Cell: ({ cell }) => {
+      return <DeleteCell userID={cell.value}/>
+    }
+  }
 ]

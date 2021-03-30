@@ -1,20 +1,22 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTable } from 'react-table';
-import Modal from '../../components/UserModal/UserModal';
-
-import { TableComponent as Table } from "../../components/Table/Table";
-
 import { COLUMNS } from '../../components/Table/columns';
-import { getUsers } from '../../redusers';
+import { TableComponent as Table } from "../../components/Table/Table";
 import { UserForm } from "../../components/UserForm/UserForm";
-
+import Modal from '../../components/UserModal/UserModal';
+import { getUsers } from '../../reducers';
 
 export const UsersTable = () => {
   const users = useSelector(getUsers);
-
+  
+  const preparedUsers = users.map(user => ({
+    ...user,
+    userID: user.id,
+  }));
+  
   const columns = useMemo(() => COLUMNS, [])
-  const data = useMemo(() => users, [users])
+  const data = useMemo(() => preparedUsers, [preparedUsers])
 
   const {
     getTableProps,
@@ -29,10 +31,12 @@ export const UsersTable = () => {
 
   return (
     <>
-      <Modal>
-        {({handleClose}) => <UserForm handleClose={handleClose}/>}
+      <Modal type="add-user">
+        {({ handleClose, type }) => (
+          <UserForm handleClose={handleClose} type={type}/>
+        )}
       </Modal>
-<Table
+      <Table
         getTableProps={getTableProps}
         getTableBodyProps={getTableBodyProps}
         headerGroups={headerGroups}

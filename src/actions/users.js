@@ -1,12 +1,12 @@
-import { ADD, UPDATE, DELETE} from '../constants';
+import { ADD, DELETE, EDIT } from '../constants';
 
 export const usersActions = {
   add: user => ({
     type: ADD,
     user,
   }),
-  update: (userID, newData) => ({
-    type: UPDATE,
+  edit: (userID, newData) => ({
+    type: EDIT,
     userID,
     newData,
   }),

@@ -1,21 +1,19 @@
-import { ADD, UPDATE, DELETE} from '../constants';
+import initialUsersList from '../api/MOCK_DATA (2).json';
+import { ADD, DELETE, EDIT } from '../constants';
 
-import initialUsersList from '../api/MOCK_DATA (2).json'
 
 const usersReducer = (state = {usersList: initialUsersList}, action) => {
   switch (action.type) {
     case ADD:
-      const preparedUderData = {...action.user, id: state.usersList.length + 1};
-      
       return {
         ...state,
-        usersList: [...state.usersList, preparedUderData],
+        usersList: [...state.usersList, action.user],
       };
-    case UPDATE:
+    case EDIT:
       return {
         ...state,
         usersList: state.usersList.map( user => {
-          if (user.id === action.userId) {
+          if (user.id === action.userID) {
             return {
               ...action.newData,
             };
@@ -27,7 +25,7 @@ const usersReducer = (state = {usersList: initialUsersList}, action) => {
     case DELETE:
       return {
         ...state,
-        usersList: state.usersList.filter(todo => todo.id !== action.userId),
+        usersList: state.usersList.filter(user => user.id !== action.userID),
       };
     default:
       return state;

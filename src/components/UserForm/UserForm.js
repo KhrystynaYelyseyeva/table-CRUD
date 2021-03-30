@@ -1,11 +1,11 @@
-import React from 'react';
+import { Button, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Paper, Radio, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Formik, Form, Field } from 'formik';
-import { Grid, Button,Paper, Typography, FormControlLabel, Radio, MenuItem, InputLabel, FormControl, FormLabel } from '@material-ui/core';
-import { TextField, Select, RadioGroup } from 'formik-material-ui';
-import { useDispatch } from 'react-redux';
-
+import { Field, Form, Formik } from 'formik';
+import { RadioGroup, Select, TextField } from 'formik-material-ui';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { usersActions } from '../../actions/users';
+import { getUsers } from '../../reducers';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -23,29 +23,57 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const UserForm = (props) => {
+export const UserForm = ({ handleClose, type, currentUserID }) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
+
+  const users = useSelector(getUsers);
+
+  const preparedCurrentUser = {};
+
+  if (currentUserID) {
+    const currentUser = users
+      .find(user => user.id === currentUserID);
+    
+    const fullName = currentUser.full_name.split(' ');
+
+    preparedCurrentUser.first_name = fullName[0];
+    preparedCurrentUser.last_name = fullName[1];
+    preparedCurrentUser.gender = currentUser.gender;
+    preparedCurrentUser.language = currentUser.language;
+    preparedCurrentUser.credit_card = currentUser.credit_card;
+    preparedCurrentUser.email = currentUser.email;
+    preparedCurrentUser.id = currentUser.id;
+  }
+    
+  const currentUserData = currentUserID ?
+    preparedCurrentUser:
+  {
+    first_name: '',
+    last_name: '',
+    gender: 'Male',
+    language: '',
+    credit_card: '',
+    email:'',
+  }
 
   const addUser = user => {
     dispatch(usersActions.add(user));
   };
 
+  const editUser = (userID, newData) => {
+    dispatch(usersActions.edit(userID, newData));
+  }
+
   return (
     <Paper className={classes.paper}>
       <Typography component="h1" variant="h5" align="center">
-        New user:
+        {type === 'add-user' && 'New user:'}
+        {type === 'edit-user' && 'Edit user:'}
       </Typography>
       <Formik
-        initialValues={{
-          first_name: '',
-          last_name: '',
-          gender: 'Male',
-          language: '',
-          credit_card: '',
-          email:'',
-        }}
+        initialValues={currentUserData}
 
         validate={values => {
           const errors = {};
@@ -97,9 +125,21 @@ export const UserForm = (props) => {
             language: values.language,
             credit_card: values.credit_card,
             email: values.email,
+            id: users.length + 1,
           }
-          addUser(preparedValue);
-          props.handleClose();
+
+          switch (type) {
+            case 'add-user':
+              addUser(preparedValue);
+              break;
+            case 'edit-user':
+              editUser(currentUserID, preparedValue);
+              break;
+            default:
+              return;
+          }
+          
+          handleClose();
         }}
       >
         {({ submitForm }) => (
@@ -185,7 +225,8 @@ export const UserForm = (props) => {
                   className={classes.button}
                   onClick={submitForm}
                 >
-                  Add to user
+                  {type === 'add-user' && 'Add to users'}
+                  {type === 'edit-user' && 'Save'}
                 </Button>
               </Grid>
             </Grid>
