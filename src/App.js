@@ -1,5 +1,4 @@
-import { UsersTable } from './views/UsersTable/UsersTable';
-
+import { UsersTable } from "./views/UsersTable/UsersTable";
 
 function App() {
   return (

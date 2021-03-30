@@ -1,7 +1,7 @@
-import { ADD, DELETE, EDIT } from '../constants';
+import { ADD, DELETE, EDIT } from "../constants";
 
 export const usersActions = {
-  add: user => ({
+  add: (user) => ({
     type: ADD,
     user,
   }),
@@ -10,7 +10,7 @@ export const usersActions = {
     userID,
     newData,
   }),
-  delete: userID => ({
+  delete: (userID) => ({
     type: DELETE,
     userID,
   }),
