@@ -34,7 +34,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const UserForm = ({ handleClose, type, currentUserID }) => {
+export const UserForm = ({
+  handleClose,
+  type,
+  currentUserID,
+  handleOpenSnackbar,
+}) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -156,6 +161,7 @@ export const UserForm = ({ handleClose, type, currentUserID }) => {
           }
 
           handleClose();
+          handleOpenSnackbar();
         }}
       >
         {({ submitForm }) => (

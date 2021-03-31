@@ -1,19 +1,29 @@
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { usersActions } from "../../actions/users";
+import React, { useState } from "react";
+import Dialog from "../Dialog/Dialog";
 
 export const DeleteCell = ({ userID }) => {
-  const dispatch = useDispatch();
+  const [openDialog, setOpenDialog] = useState(false);
 
-  const handleDelete = (ID) => {
-    dispatch(usersActions.delete(ID));
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
   };
 
   return (
-    <IconButton aria-label="delete" onClick={() => handleDelete(userID)}>
-      <DeleteIcon fontSize="small" />
-    </IconButton>
+    <>
+      <Dialog
+        openDialog={openDialog}
+        handleCloseDialog={handleCloseDialog}
+        userID={userID}
+      />
+      <IconButton aria-label="delete" onClick={handleOpenDialog}>
+        <DeleteIcon fontSize="small" />
+      </IconButton>
+    </>
   );
 };

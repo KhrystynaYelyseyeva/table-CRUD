@@ -24,6 +24,7 @@ export const TableComponent = (props) => {
     headerGroups,
     rows,
     prepareRow,
+    handleOpenSnackbar,
   } = props;
 
   const classes = useStyles();
@@ -56,7 +57,9 @@ export const TableComponent = (props) => {
               <TableRow key={row.name} {...row.getRowProps()}>
                 {row.cells.map((cell) => (
                   <TableCell {...cell.getCellProps()}>
-                    {cell.render("Cell")}
+                    {cell.render("Cell", {
+                      handleOpenSnackbar,
+                    })}
                   </TableCell>
                 ))}
               </TableRow>
