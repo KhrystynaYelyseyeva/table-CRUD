@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/table-CRUD/static/css/main.5c2aff42.chunk.css",
-    "main.js": "/table-CRUD/static/js/main.a0786cda.chunk.js",
-    "main.js.map": "/table-CRUD/static/js/main.a0786cda.chunk.js.map",
+    "main.js": "/table-CRUD/static/js/main.426d25f0.chunk.js",
+    "main.js.map": "/table-CRUD/static/js/main.426d25f0.chunk.js.map",
     "runtime-main.js": "/table-CRUD/static/js/runtime-main.ef6fbcf2.js",
     "runtime-main.js.map": "/table-CRUD/static/js/runtime-main.ef6fbcf2.js.map",
-    "static/js/2.3d856768.chunk.js": "/table-CRUD/static/js/2.3d856768.chunk.js",
-    "static/js/2.3d856768.chunk.js.map": "/table-CRUD/static/js/2.3d856768.chunk.js.map",
+    "static/js/2.b0271472.chunk.js": "/table-CRUD/static/js/2.b0271472.chunk.js",
+    "static/js/2.b0271472.chunk.js.map": "/table-CRUD/static/js/2.b0271472.chunk.js.map",
     "index.html": "/table-CRUD/index.html",
     "static/css/main.5c2aff42.chunk.css.map": "/table-CRUD/static/css/main.5c2aff42.chunk.css.map",
-    "static/js/2.3d856768.chunk.js.LICENSE.txt": "/table-CRUD/static/js/2.3d856768.chunk.js.LICENSE.txt"
+    "static/js/2.b0271472.chunk.js.LICENSE.txt": "/table-CRUD/static/js/2.b0271472.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ef6fbcf2.js",
-    "static/js/2.3d856768.chunk.js",
+    "static/js/2.b0271472.chunk.js",
     "static/css/main.5c2aff42.chunk.css",
-    "static/js/main.a0786cda.chunk.js"
+    "static/js/main.426d25f0.chunk.js"
   ]
 }
