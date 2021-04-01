@@ -5,12 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import EditIcon from "@material-ui/icons/Edit";
 import React, { useState } from "react";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   button: {
     display: "block",
-    margin: "5vh auto 5vh",
+    margin: theme.spacing(2),
+    fontWeight: "bold",
+    color: "white",
+    borderColor: "white",
   },
-});
+}));
 
 const UserModal = ({ children, type }) => {
   const [open, setOpen] = useState(false);
@@ -28,8 +31,7 @@ const UserModal = ({ children, type }) => {
     <div>
       {type === "add-user" && (
         <Button
-          variant="contained"
-          color="primary"
+          variant="outlined"
           className={classes.button}
           onClick={handleOpen}
           aria-label="add-user"

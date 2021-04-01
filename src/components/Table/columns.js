@@ -44,8 +44,13 @@ export const COLUMNS = [
   {
     Header: "Delete user",
     id: "delete",
-    Cell: ({ row: { original } }) => {
-      return <DeleteCell userID={original.id} />;
+    Cell: ({ handleShowUndoButton, row: { original } }) => {
+      return (
+        <DeleteCell
+          userID={original.id}
+          handleShowUndoButton={handleShowUndoButton}
+        />
+      );
     },
   },
 ];

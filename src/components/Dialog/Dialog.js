@@ -8,7 +8,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { usersActions } from "../../actions/users";
 
-const ResponsiveDialog = ({ openDialog, handleCloseDialog, userID }) => {
+const ResponsiveDialog = ({
+  openDialog,
+  handleCloseDialog,
+  userID,
+  handleShowUndoButton,
+}) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const dispatch = useDispatch();
@@ -35,6 +40,7 @@ const ResponsiveDialog = ({ openDialog, handleCloseDialog, userID }) => {
           <Button
             onClick={() => {
               handleDelete(userID);
+              handleShowUndoButton();
               handleCloseDialog();
             }}
             color="primary"

@@ -25,6 +25,7 @@ export const TableComponent = (props) => {
     rows,
     prepareRow,
     handleOpenSnackbar,
+    handleShowUndoButton,
   } = props;
 
   const classes = useStyles();
@@ -43,6 +44,7 @@ export const TableComponent = (props) => {
                 <TableCell
                   {...column.getHeaderProps()}
                   className={classes.fontBold}
+                  align="center"
                 >
                   {column.render("Header")}
                 </TableCell>
@@ -59,6 +61,7 @@ export const TableComponent = (props) => {
                   <TableCell {...cell.getCellProps()}>
                     {cell.render("Cell", {
                       handleOpenSnackbar,
+                      handleShowUndoButton,
                     })}
                   </TableCell>
                 ))}

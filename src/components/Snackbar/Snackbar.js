@@ -14,7 +14,7 @@ const MySnackbar = ({ openSnackbar, handleCloseSnackbar }) => {
       onClose={handleCloseSnackbar}
     >
       <Alert onClose={handleCloseSnackbar} severity="success">
-        "Success!"
+        Success!
       </Alert>
     </Snackbar>
   );
